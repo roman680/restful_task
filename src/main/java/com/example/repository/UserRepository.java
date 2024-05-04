@@ -1,13 +1,20 @@
 package com.example.repository;
 
-import java.util.Date;
+import com.example.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import com.example.model.User;
-import com.example.model.dto.UserRequestDto;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
-    List<User> findByDateOfBirthBetweenAndIsDeletedFalse(Date from, Date to);
+    @Query("SELECT u FROM User u WHERE u.email = :email AND u.isDeleted = false")
+    Optional<User> findByEmail(@Param("email") String email);
+
+    @Query("SELECT u FROM User u WHERE u.dateOfBirth BETWEEN :from AND :to AND u.isDeleted = false")
+    List<User> findByDateOfBirthBetweenAndIsDeletedFalse(
+            @Param("from") LocalDate from,
+            @Param("to") LocalDate to
+    );
 }

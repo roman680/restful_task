@@ -1,10 +1,9 @@
 package com.example.service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import com.example.model.User;
 import com.example.model.dto.UserRequestDto;
+import java.time.LocalDate;
+import java.util.List;
 
 public interface UserService {
 
@@ -14,5 +13,5 @@ public interface UserService {
 
     void delete(Long id);
 
-    Optional<List<User>> findUsersByBirthRange(Date from, Date to);
+    List<User> findUsersByBirthRange(LocalDate from, LocalDate to);
 }

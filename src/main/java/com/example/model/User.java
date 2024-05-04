@@ -1,6 +1,6 @@
 package com.example.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
@@ -27,25 +26,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     @Email
     @Column(unique = true)
     private String email;
 
-    @NotBlank
+    @NotNull
     private String firstName;
 
-    @NotBlank
+    @NotNull
     private String lastName;
 
     @Past
     @NotNull
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Nullable
     private String address;
 
     @Pattern(regexp="^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$")
+    @Column(unique = true)
     private String phoneNumber;
 
     @Column(columnDefinition = "boolean default false")
