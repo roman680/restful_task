@@ -1,15 +1,4 @@
-package validation;
-
-import com.example.validation.AgeConstraint;
-import com.example.validation.AgeValidator;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Value;
-import jakarta.validation.ConstraintValidatorContext;
-import java.lang.reflect.Field;
-import java.time.LocalDate;
+package com.example.validation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -17,6 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import jakarta.validation.ConstraintValidatorContext;
+import java.lang.reflect.Field;
+import java.time.LocalDate;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Value;
 
 class AgeValidatorTest {
 

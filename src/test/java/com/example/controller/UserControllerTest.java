@@ -1,18 +1,18 @@
 package com.example.controller;
 
-import com.example.model.User;
-import com.example.model.dto.UserRequestDto;
-import com.example.service.UserService;
-import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import java.time.LocalDate;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+
+import com.example.model.User;
+import com.example.model.dto.UserRequestDto;
+import com.example.service.UserService;
+import java.time.LocalDate;
+import java.util.Collections;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 class UserControllerTest {
 

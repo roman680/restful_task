@@ -1,10 +1,10 @@
 package com.example.validation;
 
-import org.springframework.beans.factory.annotation.Value;
-import java.time.LocalDate;
-import java.time.Period;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import java.time.LocalDate;
+import java.time.Period;
+import org.springframework.beans.factory.annotation.Value;
 
 public class AgeValidator implements ConstraintValidator<AgeConstraint, LocalDate> {
 
@@ -16,7 +16,8 @@ public class AgeValidator implements ConstraintValidator<AgeConstraint, LocalDat
     }
 
     @Override
-    public boolean isValid(LocalDate birthDate, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(LocalDate birthDate,
+                           ConstraintValidatorContext constraintValidatorContext) {
         if (birthDate == null) {
             return false;
         }
@@ -25,7 +26,8 @@ public class AgeValidator implements ConstraintValidator<AgeConstraint, LocalDat
         Period period = Period.between(birthDate, currentDate);
 
         if (period.getYears() < userAgeRequirement) {
-            throw new IllegalArgumentException("User's age must be older than " + userAgeRequirement);
+            throw new IllegalArgumentException("User's age must be older than "
+                    + userAgeRequirement);
         }
         return true;
     }

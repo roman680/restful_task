@@ -1,22 +1,29 @@
 package com.example.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.example.exception.UserNotFoundException;
 import com.example.mapper.UserMapper;
 import com.example.model.User;
 import com.example.model.dto.UserRequestDto;
 import com.example.repository.UserRepository;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class UserServiceImplTest {
 
@@ -123,7 +130,8 @@ class UserServiceImplTest {
         LocalDate toDate = LocalDate.of(2000, 12, 31);
         List<User> usersInDateRange = new ArrayList<>();
 
-        when(userRepository.findByDateOfBirthBetweenAndIsDeletedFalse(fromDate, toDate)).thenReturn(usersInDateRange);
+        when(userRepository.findByDateOfBirthBetweenAndIsDeletedFalse(fromDate, toDate))
+                .thenReturn(usersInDateRange);
 
         List<User> foundUsers = userService.findUsersByBirthRange(fromDate, toDate);
 
@@ -132,9 +140,10 @@ class UserServiceImplTest {
 
     @Test
     void findUsersByBirthRange_InvalidRange_ExceptionThrown() {
-        LocalDate fromDate = LocalDate.of(2001, 1, 1); // Invalid range
+        LocalDate fromDate = LocalDate.of(2001, 1, 1);
         LocalDate toDate = LocalDate.of(2000, 12, 31);
 
-        assertThrows(IllegalArgumentException.class, () -> userService.findUsersByBirthRange(fromDate, toDate));
+        assertThrows(IllegalArgumentException.class, () -> userService
+                .findUsersByBirthRange(fromDate, toDate));
     }
 }

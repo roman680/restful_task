@@ -5,10 +5,10 @@ import com.example.mapper.UserMapper;
 import com.example.model.User;
 import com.example.model.dto.UserRequestDto;
 import com.example.repository.UserRepository;
-import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
             userMapper.updateUserFromDto(userRequestDto, user);
             return userRepository.save(user);
         }
-        throw new UserNotFoundException("User with email: " + userRequestDto.getEmail() + " not found");
+        throw new UserNotFoundException("User with email: " + userRequestDto.getEmail()
+                + " not found");
     }
 
     @Override

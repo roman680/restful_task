@@ -1,13 +1,13 @@
 package com.example.repository;
 
 import com.example.model.User;
+import java.time.LocalDate;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import java.time.LocalDate;
-import java.util.List;
 
 @DataJpaTest
 public class UserRepositoryTest {
@@ -54,8 +54,8 @@ public class UserRepositoryTest {
 
         LocalDate fromDate = LocalDate.of(1990, 1, 1);
         LocalDate toDate = LocalDate.of(1995, 6, 30);
-        List<User> users = userRepository.findByDateOfBirthBetweenAndIsDeletedFalse
-                (fromDate, toDate);
+        List<User> users = userRepository.findByDateOfBirthBetweenAndIsDeletedFalse(
+                fromDate, toDate);
 
         Assertions.assertEquals(2, users.size());
     }
